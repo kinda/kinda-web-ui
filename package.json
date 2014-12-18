@@ -1,0 +1,22 @@
+{
+  "name": "kinda-web-ui",
+  "version": "0.1.0",
+  "description": "...",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kinda/kinda-web-ui"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Vila <mvila@3base.com>",
+  "license": "MIT",
+  "dependencies": {
+    "co": "^3.1.0",
+    "kinda-translator": "https://github.com/kinda/kinda-translator/tarball/master",
+    "kinda-ui": "https://github.com/kinda/kinda-ui/tarball/master",
+    "kinda-util": "https://github.com/kinda/kinda-util/tarball/master",
+    "lodash": "^2.4.1"
+  }
+}
