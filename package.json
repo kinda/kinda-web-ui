@@ -14,9 +14,9 @@
   "license": "MIT",
   "dependencies": {
     "co": "^3.1.0",
-    "kinda-translator": "https://github.com/kinda/kinda-translator/tarball/master",
-    "kinda-ui": "https://github.com/kinda/kinda-ui/tarball/master",
-    "kinda-util": "https://github.com/kinda/kinda-util/tarball/master",
+    "kinda-translator": "kinda/kinda-translator",
+    "kinda-ui": "kinda/kinda-ui",
+    "kinda-util": "kinda/kinda-util",
     "lodash": "^2.4.1"
   }
 }
