@@ -18,9 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "co": "^3.1.0",
-    "kinda-translator": "kinda/kinda-translator",
-    "kinda-ui": "kinda/kinda-ui",
-    "kinda-util": "kinda/kinda-util",
+    "kinda-translator": "^0.1.0",
+    "kinda-ui": "^0.1.0",
+    "kinda-util": "^0.1.0",
     "lodash": "^2.4.1"
   }
 }
