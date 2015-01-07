@@ -65,7 +65,9 @@ var Form = React.createClass({
           firstInputRect = rect;
         });
         firstInput.select();
-      }).call(this);
+      }.bind(this)).catch(function(err) {
+        console.error(err.stack);
+      });
       return;
     }
     if (this.props.onSubmit) this.props.onSubmit();
