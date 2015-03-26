@@ -72,7 +72,15 @@ var Input = React.createClass({
       return util.parseNumber(value);
     else if (this.props.type === 'date')
       return util.parseDate(value);
-    else
+    else if (this.props.type === 'array') {
+      try {
+        value = JSON.parse(value);
+        if (!_.isArray(value)) value = undefined
+      } catch (err) {
+        value = undefined;
+      }
+      return value;
+    } else
       return value;
   },
 
@@ -81,18 +89,27 @@ var Input = React.createClass({
       return util.formatNumber(value);
     else if (this.props.type === 'date')
       return util.formatDate(value);
+    else if (this.props.type === 'array')
+      return value != null ? JSON.stringify(value, undefined, 2) : '';
     else
       return value;
   },
 
   checkValidity: function() {
     var isValid = true;
-    if (this.props.required)
+    if (this.props.required) {
       isValid = !!this.getValue();
-    if (this.props.type === 'email')
+    }
+    if (this.props.type === 'email') {
       isValid = /^.+@.+$/.test(this.getValue());
-    if (isValid !== this.state.isValid)
+    } else if (this.props.type === 'array') {
+      if (!this.getValue() && this.state.inputValue) {
+        isValid = false;
+      }
+    }
+    if (isValid !== this.state.isValid) {
       this.setState({ isValid: isValid });
+    }
     return { isValid: isValid };
   },
 
@@ -132,6 +149,8 @@ var Input = React.createClass({
       return 'text';
     else if (this.props.type === 'date')
       return 'text';
+    else if (this.props.type === 'array')
+      return 'textarea';
     else
       return this.props.type;
   },
@@ -156,6 +175,7 @@ var Input = React.createClass({
       disabled: this.props.disabled,
       readOnly: this.props.readOnly,
       placeholder: this.props.placeholder,
+      rows: this.props.rows,
       bsStyle: this.getBSStyle(),
       labelClassName: this.getLabelClassName(),
       onChange: this.handleChange
