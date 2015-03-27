@@ -176,6 +176,7 @@ var Input = React.createClass({
       readOnly: this.props.readOnly,
       placeholder: this.props.placeholder,
       rows: this.props.rows,
+      style: this.props.style,
       bsStyle: this.getBSStyle(),
       labelClassName: this.getLabelClassName(),
       onChange: this.handleChange
