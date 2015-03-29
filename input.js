@@ -117,7 +117,7 @@ var Input = React.createClass({
     if (value === this.state.inputValue) return;
     this.setState({ inputValue: value }, function() {
       if (this.state.isValid != null) this.checkValidity();
-      if (fn) fn();
+      if (fn) fn(this);
     }.bind(this));
   },
 
