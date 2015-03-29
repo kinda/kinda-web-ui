@@ -179,6 +179,10 @@ var Input = React.createClass({
       style: this.props.style,
       bsStyle: this.getBSStyle(),
       labelClassName: this.getLabelClassName(),
+      addonBefore: this.props.addonBefore,
+      addonAfter: this.props.addonAfter,
+      buttonBefore: this.props.buttonBefore,
+      buttonAfter: this.props.buttonAfter,
       onChange: this.handleChange
     };
     if (this.props.type === 'checkbox')
