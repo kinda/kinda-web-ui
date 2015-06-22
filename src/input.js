@@ -7,7 +7,7 @@ let BS = require('react-bootstrap');
 let Input = {
   inject(ui) {
     return React.createClass({
-      getInitialStatefunction() {
+      getInitialState() {
         return {
           inputValue: undefined,
           isValid: undefined
