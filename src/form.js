@@ -1,7 +1,6 @@
 'use strict';
 
 let _ = require('lodash');
-let co = require('co');
 let React = require('react');
 
 let Form = {
@@ -49,8 +48,8 @@ let Form = {
         e.preventDefault();
         let validity = this.checkValidity();
         if (!validity.isValid) {
-          co(function *() {
-            yield ui.alert(ui.getLocaleValue('missingOrInvalidInformationMessage'));
+          (async function() {
+            await ui.alert(ui.getLocaleValue('missingOrInvalidInformationMessage'));
             let firstInput, firstInputRect;
             validity.invalidInputs.forEach(function(input) {
               let rect = input.getDOMNode().getBoundingClientRect();
@@ -61,8 +60,8 @@ let Form = {
               firstInputRect = rect;
             });
             firstInput.select();
-          }).catch(function(err) {
-            console.error(err.stack);
+          })().catch(function(err) {
+            console.error(err.stack || err);
           });
           return;
         }
