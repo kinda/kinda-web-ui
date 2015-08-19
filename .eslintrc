@@ -1,6 +1,14 @@
 {
   "extends": "eslint-config-kinda",
+  "plugins": [
+    "react"
+  ],
   "env": {
     "jquery": true
+  },
+  "rules": {
+    "react/jsx-no-undef": [1],
+    "react/jsx-quotes": [1, "single"],
+    "react/self-closing-comp": [1]
   }
 }
