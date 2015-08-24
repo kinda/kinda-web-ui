@@ -178,6 +178,7 @@ let Input = {
           disabled: this.props.disabled,
           readOnly: this.props.readOnly,
           placeholder: this.props.placeholder,
+          autoFocus: this.props.autoFocus,
           rows: this.props.rows,
           style: this.props.style,
           bsStyle: this.getBSStyle(),
