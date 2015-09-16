@@ -170,25 +170,26 @@ let Input = {
       },
 
       render() {
-        let props = {
-          type: this.getType(),
-          label: this.props.label,
-          ref: 'input',
-          required: this.props.required,
-          disabled: this.props.disabled,
-          readOnly: this.props.readOnly,
-          placeholder: this.props.placeholder,
-          autoFocus: this.props.autoFocus,
-          rows: this.props.rows,
-          style: this.props.style,
-          bsStyle: this.getBSStyle(),
-          labelClassName: this.getLabelClassName(),
-          addonBefore: this.props.addonBefore,
-          addonAfter: this.props.addonAfter,
-          buttonBefore: this.props.buttonBefore,
-          buttonAfter: this.props.buttonAfter,
-          onChange: this.handleChange
-        };
+        let props = _.pick(this.props, [
+          'id',
+          'label',
+          'required',
+          'disabled',
+          'readOnly',
+          'placeholder',
+          'autoFocus',
+          'rows',
+          'style',
+          'addonBefore',
+          'addonAfter',
+          'buttonBefore',
+          'buttonAfter'
+        ]);
+        props.type = this.getType();
+        props.ref = 'input';
+        props.bsStyle = this.getBSStyle();
+        props.labelClassName = this.getLabelClassName();
+        props.onChange = this.handleChange;
         if (this.props.type === 'checkbox') {
           props.checked = this.state.inputValue;
         } else {

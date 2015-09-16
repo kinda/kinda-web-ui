@@ -69,13 +69,15 @@ let Form = {
       },
 
       render() {
+        let props = _.pick(this.props, 'id', 'className');
+        _.defaults(props, {
+          role: 'form',
+          autoComplete: 'off',
+          noValidate: true
+        });
+        props.onSubmit = this.handleSubmit;
         return (
-          React.DOM.form({
-            role: 'form',
-            onSubmit: this.handleSubmit,
-            autoComplete: 'off',
-            noValidate: true
-          }, this.props.children)
+          React.DOM.form(props, this.props.children)
         );
       }
     });

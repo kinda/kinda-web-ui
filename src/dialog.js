@@ -23,7 +23,7 @@ let Dialog = {
       renderOverlay() {
         if (!this.state.isOpen) return false;
         return (
-          <BS.Modal animation={this.state.options.animation} onHide={this.onHide}>
+          <BS.Modal id={this.state.options.id} animation={this.state.options.animation} onHide={this.onHide}>
             <BS.Modal.Header closeButton>
               <BS.Modal.Title>{this.state.options.title}</BS.Modal.Title>
             </BS.Modal.Header>
@@ -55,12 +55,12 @@ let Dialog = {
               <BS.ButtonToolbar>
                 {
                   this.state.options.secondaryButton ?
-                  <BS.Button onClick={this.onSecondaryButton}>
+                  <BS.Button id='dialog-secondary-button' onClick={this.onSecondaryButton}>
                     {this.state.options.secondaryButton.label}
                   </BS.Button> :
                   false
                 }
-                <BS.Button bsStyle='primary' onClick={this.onPrimaryButton}>
+                <BS.Button id='dialog-primary-button' bsStyle='primary' onClick={this.onPrimaryButton}>
                   {this.state.options.primaryButton.label}
                 </BS.Button>
               </BS.ButtonToolbar>
