@@ -3,14 +3,22 @@
 let _ = require('lodash');
 let React = require('react');
 let BS = require('react-bootstrap');
+let ColorPicker = require('react-color');
 
 let Input = {
   inject(ui) {
     return React.createClass({
+      getDefaultProps() {
+        return {
+          colorPickerType: 'compact'
+        };
+      },
+
       getInitialState() {
         return {
           inputValue: undefined,
-          isValid: undefined
+          isValid: undefined,
+          displayColorPicker: false
         };
       },
 
@@ -95,6 +103,8 @@ let Input = {
           return ui.getLocaleValue('date')(value);
         } else if (this.props.type === 'array') {
           return value != null ? JSON.stringify(value, undefined, 2) : '';
+        } else if (this.props.type === 'color') {
+          return value || '';
         } else {
           return value;
         }
@@ -136,6 +146,19 @@ let Input = {
         this.setInputValue(value, this.props.onChange);
       },
 
+      handleColorInputClick() {
+        this.setState({ displayColorPicker: !this.state.displayColorPicker });
+      },
+
+      handleColorInputClose() {
+        this.setState({ displayColorPicker: false });
+      },
+
+      handleColorInputChange(color) {
+        let value = '#' + color.hex;
+        this.setInputValue(value, this.props.onChange);
+      },
+
       getInputDOMNode() {
         return this.refs.input.getInputDOMNode();
       },
@@ -170,6 +193,8 @@ let Input = {
       },
 
       render() {
+        if (this.props.type === 'color') return this.renderColorInput();
+
         let props = _.pick(this.props, [
           'id',
           'label',
@@ -195,7 +220,33 @@ let Input = {
         } else {
           props.value = this.state.inputValue;
         }
-        return React.createElement(BS.Input, props);
+
+        return <BS.Input {...props} />;
+      },
+
+      renderColorInput() {
+        let props = _.pick(this.props, [
+          'id',
+          'label',
+          'style'
+        ]);
+        props.bsStyle = this.getBSStyle();
+        props.labelClassName = this.getLabelClassName();
+
+        return (
+          <BS.Input {...props}>
+            <div style={{ width: '100%', padding: 5, background: '#fff', border: '1px solid #ccc', borderRadius: 4, display: 'inline-block', cursor: 'pointer' }} onClick={this.handleColorInputClick}>
+              <div style={{ height: 21, borderRadius: 2, background: this.state.inputValue }} />
+            </div>
+            <ColorPicker
+              color={this.state.inputValue}
+              positionCSS={{ position: 'absolute', top: 63, left: -12 }}
+              display={this.state.displayColorPicker}
+              onChange={this.handleColorInputChange}
+              onClose={this.handleColorInputClose}
+              type={this.props.colorPickerType} />
+          </BS.Input>
+        );
       }
     });
   }
