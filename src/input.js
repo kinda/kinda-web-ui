@@ -82,7 +82,7 @@ let Input = {
         if (this.props.type === 'number') {
           return ui.getLocaleValue('parseNumber')(value);
         } else if (this.props.type === 'date') {
-          return ui.getLocaleValue('parseDate')(value);
+          return ui.getLocaleValue('parseDate')(value, this.props.timeZone);
         } else if (this.props.type === 'array') {
           try {
             value = JSON.parse(value);
@@ -100,7 +100,7 @@ let Input = {
         if (this.props.type === 'number') {
           return ui.getLocaleValue('number')(value);
         } else if (this.props.type === 'date') {
-          return ui.getLocaleValue('date')(value);
+          return ui.getLocaleValue('date')(value, this.props.timeZone);
         } else if (this.props.type === 'array') {
           return value != null ? JSON.stringify(value, undefined, 2) : '';
         } else if (this.props.type === 'color') {
