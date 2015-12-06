@@ -21,7 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "kinda-abstract-ui": "^0.1.0",
-    "kinda-localizer": "^0.1.0",
     "lodash": "^3.9.1",
     "react-color": "1.1.2"
   },
